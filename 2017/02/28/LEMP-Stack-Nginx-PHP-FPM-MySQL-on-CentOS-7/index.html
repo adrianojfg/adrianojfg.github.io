@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>LEMP Stack (Nginx + PHP-FPM + MySQL) on CentOS 7 | Adriano&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="This post I will show you how to install the LEMP (Nginx + PHP-FPM + MySQL) stack on CentOS 7 for start developing with PHP.
+NginxStep one: update your OSRun the command bellow to update CentOS:
+1$ su">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LEMP Stack (Nginx + PHP-FPM + MySQL) on CentOS 7">
+<meta property="og:url" content="https://github.com/adrianojfg/blog.github.io/2017/02/28/LEMP-Stack-Nginx-PHP-FPM-MySQL-on-CentOS-7/index.html">
+<meta property="og:site_name" content="Adriano's Blog">
+<meta property="og:description" content="This post I will show you how to install the LEMP (Nginx + PHP-FPM + MySQL) stack on CentOS 7 for start developing with PHP.
+NginxStep one: update your OSRun the command bellow to update CentOS:
+1$ su">
+<meta property="og:updated_time" content="2017-03-01T00:47:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LEMP Stack (Nginx + PHP-FPM + MySQL) on CentOS 7">
+<meta name="twitter:description" content="This post I will show you how to install the LEMP (Nginx + PHP-FPM + MySQL) stack on CentOS 7 for start developing with PHP.
+NginxStep one: update your OSRun the command bellow to update CentOS:
+1$ su">
+  
+    <link rel="alternate" href="/atom.xml" title="Adriano&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon-96x96.png">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-LEMP-Stack-Nginx-PHP-FPM-MySQL-on-CentOS-7" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LEMP Stack (Nginx + PHP-FPM + MySQL) on CentOS 7
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>This post I will show you how to install the LEMP (Nginx + PHP-FPM + MySQL) stack on CentOS 7 for start developing with PHP.</p>
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><h3 id="Step-one-update-your-OS"><a href="#Step-one-update-your-OS" class="headerlink" title="Step one: update your OS"></a>Step one: update your OS</h3><p>Run the command bellow to update CentOS:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum update</div></pre></td></tr></table></figure>
+<h3 id="Step-two-install-EPEL-repository"><a href="#Step-two-install-EPEL-repository" class="headerlink" title="Step two: install EPEL repository"></a>Step two: install EPEL repository</h3><p>To install Nginx, it’s necessary the EPEL repository. The easiest way to add it is installed via yum.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo install epel-release</div></pre></td></tr></table></figure>
+<h3 id="Step-three-install-Nginx"><a href="#Step-three-install-Nginx" class="headerlink" title="Step three: install Nginx"></a>Step three: install Nginx</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo install nginx</div></pre></td></tr></table></figure>
+<h3 id="Step-four-start-Nginx-and-test-it"><a href="#Step-four-start-Nginx-and-test-it" class="headerlink" title="Step four: start Nginx and test it"></a>Step four: start Nginx and test it</h3><p>After installed, let’s start nginx with the following command:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl start nginx</div></pre></td></tr></table></figure>
+<p>By default, CentOS 7 enable firewall for avoid web server traffic. Let’s allow HTTP and HTTPS:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo firewalld-cmd --permanent --zone=public --add-service=http</div><div class="line">$ sudo firewalld-cmd --permanent --zone=public --add-service=https</div><div class="line">$ sudo firewalld-cmd --reload</div></pre></td></tr></table></figure></p>
+<p>For local development environment, if you will prefer disable firewall service to avoid future headaches, run this command:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl <span class="built_in">disable</span> firewalld</div></pre></td></tr></table></figure></p>
+<p>Now it’ possible to test if the server is running. Open the web browser and access:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># If you are using the vagrant file of my last post</span></div><div class="line">http://localhost:8888</div><div class="line"></div><div class="line"><span class="comment"># For local installation:</span></div><div class="line">http://localhost</div><div class="line"></div><div class="line"><span class="comment"># For remote installation:</span></div><div class="line">http://&lt;IP address&gt;</div></pre></td></tr></table></figure></p>
+<p>You will se the default CentOS 7 Nginx web page. To enable Nginx for start automatically on boot, enter the following command:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl <span class="built_in">enable</span> nginx</div></pre></td></tr></table></figure></p>
+<h2 id="PHP-FPM"><a href="#PHP-FPM" class="headerlink" title="PHP-FPM"></a>PHP-FPM</h2><h3 id="Step-one-install-REMI-repository"><a href="#Step-one-install-REMI-repository" class="headerlink" title="Step one: install REMI repository"></a>Step one: install REMI repository</h3><p>Add REMI repositoy to install PHP 7.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ wget http://rpms.famillecollet.com/enterprise/remi-release-7.rpm</div><div class="line">$ sudo rpm -Uvh remi-release-7.rpm</div></pre></td></tr></table></figure>
+<h3 id="Step-two-enable-PHP-on-REMI"><a href="#Step-two-enable-PHP-on-REMI" class="headerlink" title="Step two: enable PHP on REMI"></a>Step two: enable PHP on REMI</h3><p>You will need to edit a remi repo file to enable PHP. In this case, we will enable PHP 5.6. Feel free to choose another version (7.0 or 7.1 ) editing the respective file.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Open the file on Vi editor</span></div><div class="line">$ sudo vi /etc/yum.repos.d/remi.repo</div></pre></td></tr></table></figure>
+<p>Change enable=0 to enable=1 on [remi-php56] block:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[remi-php56]</div><div class="line">name=Remi&apos;s PHP 5.6 RPM repository for Enterprise Linux 7 - $basearch</div><div class="line">#baseurl=http://rpms.remirepo.net/enterprise/7/php56/$basearch/</div><div class="line">mirrorlist=http://rpms.remirepo.net/enterprise/7/php56/mirror</div><div class="line"># NOTICE: common dependencies are in &quot;remi-safe&quot;</div><div class="line">enabled=1 # HERE!</div><div class="line">gpgcheck=1</div><div class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi</div></pre></td></tr></table></figure></p>
+<p>Save and close the file (:x ENTER)</p>
+<h3 id="Step-three-install-PHP"><a href="#Step-three-install-PHP" class="headerlink" title="Step three: install PHP"></a>Step three: install PHP</h3><p>Now, the easiest step. You will install PHP command line, PHP-FPM (PHP FastCGI Process Manager) and PHP MySQL extension:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum install php php-fpm php-mysql</div></pre></td></tr></table></figure>
+<h3 id="Step-four-integrante-Nginx-with-PHP-FPM"><a href="#Step-four-integrante-Nginx-with-PHP-FPM" class="headerlink" title="Step four: integrante Nginx with PHP-FPM"></a>Step four: integrante Nginx with PHP-FPM</h3><p>You will need to add a configuration block of php-fpm to ensure that nginx knows to send PHP requests to PHP-FPM. Let’s do it creating a conf file:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo vi /etc/nginx/default.d/php-fpm.conf</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># Add the following content to it:</div><div class="line"># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</div><div class="line">#</div><div class="line">location ~ \.php$ &#123;</div><div class="line">    root           /usr/share/nginx/html;</div><div class="line">    fastcgi_pass   127.0.0.1:9000;</div><div class="line">    fastcgi_index  index.php;</div><div class="line">    fastcgi_param  SCRIPT_FILENAME   $document_root$fastcgi_script_name;</div><div class="line">    include        fastcgi_params;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Save and close the file (:x ENTER)</p>
+<p>This content block tells to Nginx that any .php file should pass to 127.0.0.1 (localhost) on port 9000, wich is where PHP-FPM runs. That is the default configuration.</p>
+<h3 id="Step-five-start-PHP-restart-Nginx-and-test-it"><a href="#Step-five-start-PHP-restart-Nginx-and-test-it" class="headerlink" title="Step five: start PHP, restart Nginx and test it"></a>Step five: start PHP, restart Nginx and test it</h3><p>Let’ start PHP-FPM, restart Nginx service (it’s necessary) and enable for boot:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl start php-fpm</div><div class="line">$ sudo systemctl restart nginx</div><div class="line">$ sudo systemctl <span class="built_in">enable</span> php-fpm</div></pre></td></tr></table></figure>
+<p>Now, you will create a phpinfo file to check the PHP information and confirm that the installation was successfull.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Go to default nginx server folder</span></div><div class="line">$ sudo <span class="built_in">cd</span> /usr/share/nginx/html</div><div class="line"><span class="comment"># create a phpinfo.php file with call phpinfo() function</span></div><div class="line">$ sudo <span class="built_in">echo</span> <span class="string">"&lt;?php phpinfo();"</span> &gt; phpinfo.php</div></pre></td></tr></table></figure></p>
+<p>Open the web browser with following url:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># If you are using the vagrant file of my last post</div><div class="line">http://localhost:8888/phpinfo.php</div><div class="line"></div><div class="line"># For local installation:</div><div class="line">http://localhost/phpinfo.php</div><div class="line"></div><div class="line"># For remote installation:</div><div class="line">http://&lt;IP address&gt;/phpinfo.php</div></pre></td></tr></table></figure></p>
+<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><h3 id="Step-one-install-MySQL-yum-repository"><a href="#Step-one-install-MySQL-yum-repository" class="headerlink" title="Step one: install MySQL yum repository"></a>Step one: install MySQL yum repository</h3><p>You will download the RPM package of MySQL <a href="https://dev.mysql.com/downloads/repo/yum/" target="_blank" rel="external">website</a> and install it:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ wget https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm</div><div class="line">$ sudo rpm -Uvh mysql57-community-release-el7-9.noarch.rpm</div></pre></td></tr></table></figure></p>
+<h3 id="Step-two-install-MySQL"><a href="#Step-two-install-MySQL" class="headerlink" title="Step two: install MySQL"></a>Step two: install MySQL</h3><p>Then, install MySQL:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum install mysql-server</div></pre></td></tr></table></figure></p>
+<h3 id="Step-three-start-MySQL"><a href="#Step-three-start-MySQL" class="headerlink" title="Step three: start MySQL"></a>Step three: start MySQL</h3><p>You will start the MySQL Server with the following command:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl start mysqld</div></pre></td></tr></table></figure></p>
+<p>You don’t need to enable MySQL on boot, because it was done automatically on installation process. Also during the installation, a temporary password was generated for MySQL root user inside mysql log file. Check it with the following command:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo grep <span class="string">'temporary password'</span> /var/<span class="built_in">log</span>/mysqld.log</div></pre></td></tr></table></figure></p>
+<p>You will need it to configure the MySQL, so make note (copy it ;))</p>
+<h3 id="Step-four-configure-MySQL"><a href="#Step-four-configure-MySQL" class="headerlink" title="Step four: configure MySQL"></a>Step four: configure MySQL</h3><p>You will use a MySQL script included to simplify the configuration. Use this command to run the script:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo mysql_secure_installation</div></pre></td></tr></table></figure></p>
+<p>This will prompt you for the root password that you copied on last step. Then, it will require to set a new root password. All the subsequent questions in order to remove anonymous users, disallow remote root login, remove the test database and access to it, and reload the privilege tables.</p>
+<h3 id="Step-five-login-MySQL"><a href="#Step-five-login-MySQL" class="headerlink" title="Step five: login MySQL"></a>Step five: login MySQL</h3><p>For testing MySQL and make login on console, following the commands bellow:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mysql -u root -p</div></pre></td></tr></table></figure>
+<p>Enter with the root password that you define and press ENTER. Now you are logged in. Check the database’s list with the command:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">show</span> <span class="keyword">databases</span>;</div></pre></td></tr></table></figure>
+<p>For logout, run the command:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">quit;</div></pre></td></tr></table></figure></p>
+<p>Now you have all you need to start developing PHP with MySQL database. On the next posts, I will show you other ways to configure Nginx (allow many sites) and useful PHP extensions. Also, start with a PHP framework that help us fast development with design patterns, clean code and great performance.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2017/02/28/LEMP-Stack-Nginx-PHP-FPM-MySQL-on-CentOS-7/" class="article-date">
+  <time datetime="2017-02-28T20:34:12.000Z" itemprop="datePublished">2017-02-28</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <span id="article-nav-newer" class="article-nav-link-wrap newer"></span>
+  
+  
+    <a href="/2017/02/27/Vagrant-as-Development-Environment/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vagrant as Development Environment</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+  <section id="comments" class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>Beagle Developer</p>
+
+
+      </div>
+    </footer>
+
+      
+  <script>
+   var disqus_shortname = 'https-adrianojfg-github-io';
+   
+   var disqus_url = 'https://github.com/adrianojfg/blog.github.io/2017/02/28/LEMP-Stack-Nginx-PHP-FPM-MySQL-on-CentOS-7/';
+   
+   (function(){
+     var dsq = document.createElement('script');
+     dsq.type = 'text/javascript';
+     dsq.async = true;
+     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+  </script>
+
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-92648066-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+    </div>
+  </body>
+</html>
