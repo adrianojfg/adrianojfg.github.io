@@ -8,14 +8,14 @@
   <meta name="description" content="A new way to use applications without installing it on your OS. Requirement: Docker installed It’ very ease to replace the PHP and Composer installation by Dock">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to use PHP Composer as a Docker container?">
-<meta property="og:url" content="https://github.com/adrianojfg/blog.github.io/2018/02/18/How-to-use-PHP-Composer-as-a-Docker-container">
+<meta property="og:url" content="https://github.com/adrianojfg/blog.github.io/2018/02/18/How-to-use-PHP-Composer-as-a-Docker-container/index.html">
 <meta property="og:site_name" content="Adriano&#39;s Blog">
-<meta property="og:description" content="A new way to use applications without installing it on your OS. Requirement: Docker installed It’ very ease to replace the PHP and Composer installation by Docker. After Docker installed, you will cre">
+<meta property="og:description" content="A new way to use applications without installing it on your OS. Requirement: Docker installed It’ very ease to replace the PHP and Composer installation by Docker. Once Docker installed, you will crea">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-18T20:28:03.000Z">
+<meta property="og:updated_time" content="2018-02-18T20:36:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to use PHP Composer as a Docker container?">
-<meta name="twitter:description" content="A new way to use applications without installing it on your OS. Requirement: Docker installed It’ very ease to replace the PHP and Composer installation by Docker. After Docker installed, you will cre">
+<meta name="twitter:description" content="A new way to use applications without installing it on your OS. Requirement: Docker installed It’ very ease to replace the PHP and Composer installation by Docker. Once Docker installed, you will crea">
   
     <link rel="alternate" href="/atom.xml" title="Adriano&#39;s Blog" type="application/atom+xml">
   
@@ -29,7 +29,7 @@
     <body>
   
       <div id="container" class="container">
-        <article id="post-How-to-use-PHP-Composer-as-a-Docker-container?" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-How-to-use-PHP-Composer-as-a-Docker-container" class="article article-type-post" itemscope itemprop="blogPost">
   <header id="header" class="header">
   <nav id="main-nav" class="main-nav">
     
@@ -63,22 +63,28 @@
       
         <p>A new way to use applications without installing it on your OS.</p>
 <p><em>Requirement: Docker installed</em></p>
-<p>It’ very ease to replace the PHP and Composer installation by Docker. After Docker installed, you will create a shell script file that will start a container when you type the <em>composer</em> command.</p>
+<p>It’ very ease to replace the PHP and Composer installation by Docker. Once Docker installed, you will create a shell script file that will start a container when you type the <em>composer</em> command.</p>
 <p>Follow the steps bellow:</p>
 <ol>
 <li><p>Open the terminal</p>
 </li>
-<li><p>Type the commmands bellow:</p>
+<li><p>Copy the commmands bellow:</p>
 </li>
 </ol>
-<pre><code class="bash">cat &gt; /usr/<span class="built_in">local</span>/bin/composer &lt;&lt;EOF
+<pre><code class="bash">cat &gt; /usr/<span class="built_in">local</span>/bin/composer2 &lt;&lt;EOF
 <span class="meta">#!/bin/sh</span>
 <span class="built_in">export</span> PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/<span class="built_in">local</span>/sbin:/usr/<span class="built_in">local</span>/bin
 <span class="built_in">echo</span> <span class="string">"Current working directory: '"</span>$(<span class="built_in">pwd</span>)<span class="string">"'"</span>
 docker run --rm --interactive --tty -v $(<span class="built_in">pwd</span>):/app -v ~/.ssh:/root/.ssh composer <span class="variable">$@</span>
+EOF
+</code></pre>
+<ol>
+<li>Make the file executable:</li>
+</ol>
+<pre><code class="bash">chmod +x /usr/<span class="built_in">local</span>/bin/composer
 </code></pre>
 <p><strong>It’s done!</strong></p>
-<p>For testing, go to a php application directory and type <em>composer update</em>. You will see the composer running as if it were installed. When the process finish, the container will be destroyed.<strong><em>Amazing, isn’t it?</em></strong></p>
+<p>For testing, go to a php application directory and type <strong><em>composer update</em></strong>. You will see the composer running as if it were installed. When the process finish, the container will be destroyed. <strong><em>Amazing, isn’t it?</em></strong></p>
 <p><em>PS: It’s important to explain that the command will mount two volumes inside the container: one for the application folder and one for the ssh keys. The last one allow composer download private packages.</em> </p>
 
       
@@ -87,7 +93,7 @@ docker run --rm --interactive --tty -v $(<span class="built_in">pwd</span>):/app
       <ul class="article-meta">
         <li>
           <span class="label">Published Date:</span>
-          <a href="/2018/02/18/How-to-use-PHP-Composer-as-a-Docker-container?/" class="article-date">
+          <a href="/2018/02/18/How-to-use-PHP-Composer-as-a-Docker-container/" class="article-date">
   <time datetime="2018-02-18T23:05:02.000Z" itemprop="datePublished">2018-02-18</time>
 </a>
 
@@ -140,7 +146,7 @@ docker run --rm --interactive --tty -v $(<span class="built_in">pwd</span>):/app
   <script>
    var disqus_shortname = 'https-adrianojfg-github-io';
    
-   var disqus_url = 'https://github.com/adrianojfg/blog.github.io/2018/02/18/How-to-use-PHP-Composer-as-a-Docker-container?/';
+   var disqus_url = 'https://github.com/adrianojfg/blog.github.io/2018/02/18/How-to-use-PHP-Composer-as-a-Docker-container/';
    
    (function(){
      var dsq = document.createElement('script');
