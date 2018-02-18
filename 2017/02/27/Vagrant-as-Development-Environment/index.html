@@ -5,19 +5,17 @@
   
   <title>Vagrant as Development Environment | Adriano&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Vagrant is a great tool for development without screw up your OS. It will create a virtual machine according to your need very fast.
-Let me show you how to create a CentOS 7 environment with VirtualBo">
+  <meta name="description" content="Vagrant is a great tool for development without screw up your OS. It will create a virtual machine according to your need very fast. Let me show you how to crea">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vagrant as Development Environment">
 <meta property="og:url" content="https://github.com/adrianojfg/blog.github.io/2017/02/27/Vagrant-as-Development-Environment/index.html">
-<meta property="og:site_name" content="Adriano's Blog">
-<meta property="og:description" content="Vagrant is a great tool for development without screw up your OS. It will create a virtual machine according to your need very fast.
-Let me show you how to create a CentOS 7 environment with VirtualBo">
+<meta property="og:site_name" content="Adriano&#39;s Blog">
+<meta property="og:description" content="Vagrant is a great tool for development without screw up your OS. It will create a virtual machine according to your need very fast. Let me show you how to create a CentOS 7 environment with VirtualBo">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2017-02-27T12:47:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vagrant as Development Environment">
-<meta name="twitter:description" content="Vagrant is a great tool for development without screw up your OS. It will create a virtual machine according to your need very fast.
-Let me show you how to create a CentOS 7 environment with VirtualBo">
+<meta name="twitter:description" content="Vagrant is a great tool for development without screw up your OS. It will create a virtual machine according to your need very fast. Let me show you how to create a CentOS 7 environment with VirtualBo">
   
     <link rel="alternate" href="/atom.xml" title="Adriano&#39;s Blog" type="application/atom+xml">
   
@@ -65,23 +63,23 @@ Let me show you how to create a CentOS 7 environment with VirtualBo">
       
         <p>Vagrant is a great tool for development without screw up your OS. It will create a virtual machine according to your need very fast.</p>
 <p>Let me show you how to create a CentOS 7 environment with VirtualBox and Vagrant for PHP + MySQL development.</p>
-<h3 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h3><p>Vagrant supports several providers as VirtualBox, Hyper-V, VMware. I like to use VirtualBox because is powerful and free. You can download <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="external">here</a>.</p>
-<p>After VirtualBox installed, you can download and install Vagrant. Link <a href="https://www.vagrantup.com/downloads.html" target="_blank" rel="external">here</a>.</p>
+<h3 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h3><p>Vagrant supports several providers as VirtualBox, Hyper-V, VMware. I like to use VirtualBox because is powerful and free. You can download <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener">here</a>.</p>
+<p>After VirtualBox installed, you can download and install Vagrant. Link <a href="https://www.vagrantup.com/downloads.html" target="_blank" rel="noopener">here</a>.</p>
 <h3 id="The-Vagrant-File"><a href="#The-Vagrant-File" class="headerlink" title="The Vagrant File"></a>The Vagrant File</h3><p>You need to create a file with ‘Vagrantfile’ name in some folder. I created a CentOS folder just for organize it. Follow the commands bellow using terminal:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># going to home folder</span></div><div class="line">$ <span class="built_in">cd</span></div><div class="line"></div><div class="line"><span class="comment"># creating folder for web projects and environment (organize!)</span></div><div class="line">$ mkdir -p Projects/Web</div><div class="line">$ mkdir -p Projects/Servers/CentOS</div><div class="line"></div><div class="line"><span class="comment"># creating vagrant file</span></div><div class="line">$ touch Vagrantfile</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># going to home folder</span></span><br><span class="line">$ <span class="built_in">cd</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># creating folder for web projects and environment (organize!)</span></span><br><span class="line">$ mkdir -p Projects/Web</span><br><span class="line">$ mkdir -p Projects/Servers/CentOS</span><br><span class="line"></span><br><span class="line"><span class="comment"># creating vagrant file</span></span><br><span class="line">$ touch Vagrantfile</span><br></pre></td></tr></table></figure>
 <p>Now you will set the configuration:</p>
 <ol>
-<li>Set a vagrant box. Vagrant boxes are the package format for Vagrant environments. There are many boxes out there, you can find more <a href="https://atlas.hashicorp.com/boxes/search" target="_blank" rel="external">here</a></li>
+<li>Set a vagrant box. Vagrant boxes are the package format for Vagrant environments. There are many boxes out there, you can find more <a href="https://atlas.hashicorp.com/boxes/search" target="_blank" rel="noopener">here</a></li>
 <li>Set the forward ports. In this case, you will set the web server port (80) to 8888 and mysql port (3306) to 3306, both on localhost.</li>
 <li>Sync project folder to server folder. In this case, I’m mapping the ‘Web’ folder to Nginx virtual machine folder.</li>
 <li>Set the CPU and memory’s virtual machine. I used the max CPU I have, but you can set the number according to your physical CPU and 1GB of memory is sufficient.<br>Check the Vagrant file’s content:</li>
 </ol>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Vagrant.configure(<span class="string">"2"</span>) <span class="keyword">do</span> <span class="params">|config|</span></div><div class="line">  config.vm.box = <span class="string">"centos/7"</span></div><div class="line"></div><div class="line">  config.vm.network <span class="string">"forwarded_port"</span>, <span class="symbol">guest:</span> <span class="number">80</span>, <span class="symbol">host:</span> <span class="number">8888</span></div><div class="line">  config.vm.network <span class="string">"forwarded_port"</span>, <span class="symbol">guest:</span> <span class="number">3306</span>, <span class="symbol">host:</span> <span class="number">3306</span></div><div class="line"></div><div class="line">  config.vm.synced_folder <span class="string">"../../Web"</span>, <span class="string">"/var/www"</span></div><div class="line"></div><div class="line">  config.vm.provider <span class="string">"virtualbox"</span> <span class="keyword">do</span> <span class="params">|vb|</span></div><div class="line">      vb.cpus   = <span class="number">2</span></div><div class="line">      vb.memory = <span class="string">"1024"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Vagrant.configure(<span class="string">"2"</span>) <span class="keyword">do</span> <span class="params">|config|</span></span><br><span class="line">  config.vm.box = <span class="string">"centos/7"</span></span><br><span class="line"></span><br><span class="line">  config.vm.network <span class="string">"forwarded_port"</span>, <span class="symbol">guest:</span> <span class="number">80</span>, <span class="symbol">host:</span> <span class="number">8888</span></span><br><span class="line">  config.vm.network <span class="string">"forwarded_port"</span>, <span class="symbol">guest:</span> <span class="number">3306</span>, <span class="symbol">host:</span> <span class="number">3306</span></span><br><span class="line"></span><br><span class="line">  config.vm.synced_folder <span class="string">"../../Web"</span>, <span class="string">"/var/www"</span></span><br><span class="line"></span><br><span class="line">  config.vm.provider <span class="string">"virtualbox"</span> <span class="keyword">do</span> <span class="params">|vb|</span></span><br><span class="line">      vb.cpus   = <span class="number">2</span></span><br><span class="line">      vb.memory = <span class="string">"1024"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <h3 id="Start-up-the-environment"><a href="#Start-up-the-environment" class="headerlink" title="Start up the environment"></a>Start up the environment</h3><p>For start the environment, you will just run the following command in the Vagrantfile path:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vagrant up</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant up</span><br></pre></td></tr></table></figure>
 <p>Vagrant will create the virtual machine with the set configurantion and download the CentOS box. Then, it will start the machine and map the sync folder. Finally, the VM will be ready for SSH access.</p>
 <h3 id="Access-the-environment"><a href="#Access-the-environment" class="headerlink" title="Access the environment"></a>Access the environment</h3><p>For SSH access, run the following command:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vagrant ssh</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant ssh</span><br></pre></td></tr></table></figure>
 <p>Now you are accessing the machine with CentOS 7. The next post I will show you how to install LEMP (Nginx + PHP-FPM + MySQL) stack for start developing.</p>
 
       
@@ -106,7 +104,7 @@ Let me show you how to create a CentOS 7 environment with VirtualBo">
 <nav id="article-nav" class="article-nav">
   
     <a href="/2017/02/28/LEMP-Stack-Nginx-PHP-FPM-MySQL-on-CentOS-7/" id="article-nav-newer" class="article-nav-link-wrap newer">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">Nieuwer</strong>
       <div class="article-nav-title">
         
           LEMP Stack (Nginx + PHP-FPM + MySQL) on CentOS 7
