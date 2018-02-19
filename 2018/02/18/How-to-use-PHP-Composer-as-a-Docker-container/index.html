@@ -10,12 +10,12 @@
 <meta property="og:title" content="How to use PHP Composer as a Docker container?">
 <meta property="og:url" content="https://github.com/adrianojfg/blog.github.io/2018/02/18/How-to-use-PHP-Composer-as-a-Docker-container/index.html">
 <meta property="og:site_name" content="Adriano&#39;s Blog">
-<meta property="og:description" content="A new way to use applications without installing it on your OS. Requirement: Docker installed It’ very ease to replace the PHP and Composer installation by Docker. Once Docker installed, you will crea">
+<meta property="og:description" content="A new way to use applications without installing it on your OS. Requirement: Docker installed It’ very easy to replace the PHP and Composer installation by Docker. Once Docker installed, you will crea">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2018-02-18T20:36:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to use PHP Composer as a Docker container?">
-<meta name="twitter:description" content="A new way to use applications without installing it on your OS. Requirement: Docker installed It’ very ease to replace the PHP and Composer installation by Docker. Once Docker installed, you will crea">
+<meta name="twitter:description" content="A new way to use applications without installing it on your OS. Requirement: Docker installed It’ very easy to replace the PHP and Composer installation by Docker. Once Docker installed, you will crea">
   
     <link rel="alternate" href="/atom.xml" title="Adriano&#39;s Blog" type="application/atom+xml">
   
@@ -63,7 +63,7 @@
       
         <p>A new way to use applications without installing it on your OS.</p>
 <p><em>Requirement: Docker installed</em></p>
-<p>It’ very ease to replace the PHP and Composer installation by Docker. Once Docker installed, you will create a shell script file that will start a container when you type the <em>composer</em> command.</p>
+<p>It’ very easy to replace the PHP and Composer installation by Docker. Once Docker installed, you will create a shell script file that will start a container when you type the <em>composer</em> command.</p>
 <p>Follow the steps bellow:</p>
 <ol>
 <li><p>Open the terminal</p>
@@ -71,7 +71,7 @@
 <li><p>Copy the commmands bellow:</p>
 </li>
 </ol>
-<pre><code class="bash">cat &gt; /usr/<span class="built_in">local</span>/bin/composer2 &lt;&lt;EOF
+<pre><code class="bash">cat &gt; /usr/<span class="built_in">local</span>/bin/composer &lt;&lt;EOF
 <span class="meta">#!/bin/sh</span>
 <span class="built_in">export</span> PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/<span class="built_in">local</span>/sbin:/usr/<span class="built_in">local</span>/bin
 <span class="built_in">echo</span> <span class="string">"Current working directory: '"</span>$(<span class="built_in">pwd</span>)<span class="string">"'"</span>
